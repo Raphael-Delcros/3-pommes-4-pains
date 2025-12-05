@@ -1,0 +1,25 @@
+        /* Styles personnalisés pour améliorer l'ambiance */
+        :root {
+            --nird-green: #38761d; /* Vert de la durabilité */
+            --nird-yellow: #f1c232; /* Jaune de la résistance */
+            --nird-blue: #1c4587;  /* Bleu de l'inclusion */
+        }
+        .hero-section {
+            background-color: var(--nird-green);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        .icon-box {
+            font-size: 2.5rem;
+            color: var(--nird-yellow);
+            margin-bottom: 15px;
+        }
+        .card-pillar {
+            border: 2px solid var(--nird-blue);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
+        .card-pillar:hover {
+            transform: translateY(-5px);
+        }
