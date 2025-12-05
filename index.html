@@ -14,7 +14,6 @@
     />
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -24,17 +23,18 @@
   </head>
   <body>
     <div class="crt">
+      <!-- PAGE D'ACCUEIL -->
       <header class="hero-section">
         <div class="container">
           <h1 class="display-3 fw-bold">LE VILLAGE NUMÉRIQUE RÉSISTANT</h1>
           <p class="lead mt-3">Comment l'École peut-elle tenir tête à l'Empire des Big Tech ?</p>
           <div class="mt-4">
-            <a href="#experience-section" class="btn btn-warning btn-lg fw-bold">
+            <button onclick="startGame()" class="btn btn-warning btn-lg fw-bold">
               <i class="fas fa-hand-fist me-2"></i> Entrez dans le Village et Agissez !
-            </a>
+            </button>
           </div>
         </div>
-        <div>
+        <div class="mt-4">
           <p class="mb-0 mt-2">Style :</p>
           <select class="mt-1" id="theme-select" autocomplete="off">
             <option value="Normal">Normal</option>
@@ -94,7 +94,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-hand-holding-heart" style="color: var(--tertiary)"></i>
+                  <i class="icon-box fas fa-hand-holding-heart icon-tertiary"></i>
                   <h4 class="card-title">Inclusion</h4>
                   <p class="card-text">
                     Garantir un accès équitable et une autonomie pour tous les utilisateurs.
@@ -106,7 +106,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-balance-scale" style="color: var(--tertiary)"></i>
+                  <i class="icon-box fas fa-balance-scale icon-tertiary"></i>
                   <h4 class="card-title">Responsabilité</h4>
                   <p class="card-text">
                     Faire des choix éthiques, transparents et respectueux des libertés numériques.
@@ -118,7 +118,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-leaf" style="color: var(--tertiary)"></i>
+                  <i class="icon-box fas fa-leaf icon-tertiary"></i>
                   <h4 class="card-title">Durabilité</h4>
                   <p class="card-text">Sobriété, réemploi et utilisation d'outils qui durent.</p>
                 </div>
@@ -138,17 +138,17 @@
           <div class="col-md-6">
             <div class="p-4 border rounded bg-secondary-subtle">
               <h4 class="mb-3">Nos Armes :</h4>
-              <ul class="list-unstyled fw-bold text-start mx-auto" style="max-width: 350px">
+              <ul class="list-unstyled fw-bold text-start mx-auto weapons-list">
                 <li>
-                  <i class="fab fa-linux me-2" style="color: var(--primary)"></i>Logiciels Libre
+                  <i class="fab fa-linux me-2 icon-primary"></i>Logiciels Libre
                   (Linux, LibreOffice,...)
                 </li>
                 <li>
-                  <i class="fas fa-tools me-2" style="color: var(--primary)"></i>Matériel
+                  <i class="fas fa-tools me-2 icon-primary"></i>Matériel
                   Reconditionné
                 </li>
                 <li>
-                  <i class="fas fa-users me-2" style="color: var(--primary)"></i>Mutualisation et
+                  <i class="fas fa-users me-2 icon-primary"></i>Mutualisation et
                   Co-construction
                 </li>
               </ul>
@@ -156,9 +156,9 @@
           </div>
         </div>
 
-        <a href="#" class="btn btn-success btn-lg mt-5">
+        <button onclick="startGame()" class="btn btn-success btn-lg mt-5">
           <i class="fas fa-play me-2"></i> Commencer le Parcours Interactif
-        </a> 
+        </button>
       </section>
 
       <footer class="bg-dark text-white py-4 mt-5">
@@ -170,28 +170,242 @@
           </small>
         </div>
       </footer>
+    </div>
 
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- OVERLAY DU JEU -->
+    <div id="game-overlay">
+      <div class="game-header">
+        <div class="fw-bold fs-4">
+          <i class="fas fa-crosshairs me-2"></i>
+          Score: <span id="score-display" class="text-warning">0</span>
+        </div>
+        <div class="fw-bold fs-4">
+          <i class="fas fa-clock me-2"></i>
+          Temps: <span id="timer-display" class="text-danger">30</span>s
+        </div>
+        <button class="btn btn-danger" onclick="quitGame()">
+          <i class="fas fa-times me-2"></i>Quitter
+        </button>
+      </div>
+
+      <div class="container">
+        <div id="game-arena">
+          <div class="text-center text-white p-5">
+            <h2 class="mb-4">🎯 MISSION : ÉLIMINEZ LES VIRUS BIG TECH !</h2>
+            <p class="lead">Cliquez sur les virus rouges pour protéger le Village Numérique</p>
+            <p class="text-warning">⚡ +20 points par virus éliminé | -15 points par virus échappé</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL FIN DE JEU -->
+    <div id="end-game-modal">
+      <div class="modal-content">
+        <h3 class="text-danger mb-4">
+          <i class="fas fa-flag-checkered me-2"></i>MISSION TERMINÉE !
+        </h3>
+        <h4 class="mb-4">
+          Score Final: <span id="final-score" class="text-primary fw-bold">0</span> points
+        </h4>
+
+        <div class="mb-4">
+          <h5>🏆 Classement (Top 4)</h5>
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr>
+                <th>Rang</th>
+                <th>Joueur</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody id="leaderboard-body"></tbody>
+          </table>
+        </div>
+
+        <button class="btn btn-warning w-100 mb-2" onclick="resetGame()">
+          <i class="fas fa-redo me-2"></i>Rejouer
+        </button>
+        <button class="btn btn-secondary w-100" onclick="returnToHome()">
+          <i class="fas fa-home me-2"></i>Retour à l'accueil
+        </button>
+      </div>
     </div>
 
     <div id="scanlines"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // --- CONFIGURATION DU JEU ---
+      const GAME_DURATION = 30;
+      const ENEMY_SPAWN_RATE = 1000;
+      const ENEMY_LIFETIME = 3000;
+
+      // --- VARIABLES GLOBALES ---
+      let score = 0;
+      let timer = GAME_DURATION;
+      let gameActive = false;
+      let gameInterval;
+      let spawnInterval;
+
+      // --- ÉLÉMENTS DOM ---
+      const body = document.body;
+      const themeSelector = document.getElementById("theme-select");
+      const gameOverlay = document.getElementById("game-overlay");
+      const gameArena = document.getElementById("game-arena");
+      const scoreDisplay = document.getElementById("score-display");
+      const timerDisplay = document.getElementById("timer-display");
+      const endGameModal = document.getElementById("end-game-modal");
+
+      // --- GESTION DU THÈME ---
+      themeSelector.addEventListener("change", function () {
+        if (this.value === "Retro") {
+          body.style.fontFamily = '"Pixelify Sans", sans-serif';
+          body.classList.add("theme-retro");
+        } else {
+          body.style.fontFamily = "";
+          body.classList.remove("theme-retro");
+        }
+      });
+
+      // --- DÉMARRAGE DU JEU ---
+      function startGame() {
+        if (gameActive) return;
+
+        gameActive = true;
+        score = 0;
+        timer = GAME_DURATION;
+        scoreDisplay.textContent = score;
+        timerDisplay.textContent = timer;
+
+        // Afficher l'overlay du jeu
+        gameOverlay.classList.add("active");
+        body.classList.add("laser-cursor");
+        body.style.overflow = "hidden";
+
+        // Lancer les intervalles
+        gameInterval = setInterval(updateTimer, 1000);
+        spawnInterval = setInterval(spawnEnemy, ENEMY_SPAWN_RATE);
+      }
+
+      // --- MISE À JOUR DU TIMER ---
+      function updateTimer() {
+        timer--;
+        timerDisplay.textContent = timer;
+
+        if (timer <= 0) {
+          endGame();
+        }
+      }
+
+      // --- APPARITION D'ENNEMIS ---
+      function spawnEnemy() {
+        if (!gameActive) return;
+
+        const enemy = document.createElement("div");
+        enemy.className = "enemy";
+        enemy.innerHTML = '<i class="fas fa-virus"></i>';
+
+        const maxX = gameArena.offsetWidth - 60;
+        const maxY = gameArena.offsetHeight - 60;
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        enemy.style.left = `${x}px`;
+        enemy.style.top = `${y}px`;
+
+        enemy.onclick = function() {
+          if (!gameActive) return;
+          updateScore(20);
+          this.remove();
+        };
+
+        // L'ennemi disparaît après un certain temps
+        setTimeout(() => {
+          if (document.body.contains(enemy) && gameActive) {
+            updateScore(-15);
+            enemy.remove();
+          }
+        }, ENEMY_LIFETIME);
+
+        gameArena.appendChild(enemy);
+      }
+
+      // --- MISE À JOUR DU SCORE ---
+      function updateScore(points) {
+        score += points;
+        scoreDisplay.textContent = score;
+
+        scoreDisplay.classList.add("score-pop");
+        scoreDisplay.style.color = points > 0 ? "#00ff00" : "#ff0000";
+
+        setTimeout(() => {
+          scoreDisplay.classList.remove("score-pop");
+          scoreDisplay.style.color = "#f1c232";
+        }, 500);
+      }
+
+      // --- FIN DU JEU ---
+      function endGame() {
+        if (!gameActive) return;
+
+        gameActive = false;
+        clearInterval(gameInterval);
+        clearInterval(spawnInterval);
+
+        // Nettoyer les ennemis
+        document.querySelectorAll(".enemy").forEach(e => e.remove());
+
+        // Afficher le modal de fin
+        showEndModal();
+      }
+
+      // --- AFFICHAGE DU MODAL DE FIN ---
+      function showEndModal() {
+        document.getElementById("final-score").textContent = score;
+
+        // Créer le tableau des scores
+        const leaderboard = [
+          { name: "Vous (Résistant NIRD)", score: score },
+          { name: "Astérix le Gaulois", score: Math.floor(score * 1.5) + 50 },
+          { name: "Obélix", score: Math.floor(score * 0.8) + 20 },
+          { name: "Panoramix", score: Math.floor(score * 0.5) + 10 },
+        ];
+        leaderboard.sort((a, b) => b.score - a.score);
+
+        const tbody = document.getElementById("leaderboard-body");
+        tbody.innerHTML = "";
+        leaderboard.slice(0, 4).forEach((player, index) => {
+          const row = tbody.insertRow();
+          row.innerHTML = `<td>${index + 1}</td><td>${player.name}</td><td>${player.score}</td>`;
+          if (player.name === "Vous (Résistant NIRD)") {
+            row.classList.add("table-primary", "fw-bold");
+          }
+        });
+
+        endGameModal.classList.add("active");
+      }
+
+      // --- REJOUER ---
+      function resetGame() {
+        endGameModal.classList.remove("active");
+        startGame();
+      }
+
+      // --- RETOUR À L'ACCUEIL ---
+      function returnToHome() {
+        endGameModal.classList.remove("active");
+        gameOverlay.classList.remove("active");
+        body.classList.remove("laser-cursor");
+        body.style.overflow = "";
+      }
+
+      // --- QUITTER LE JEU ---
+      function quitGame() {
+        if (confirm("Voulez-vous vraiment quitter la mission ?")) {
+          endGame();
+        }
+      }
+    </script>
   </body>
 </html>
-<script>  const themeSelector = document.getElementById("theme-select");
-
-  const bodyElement = document.body;
-
-  themeSelector.addEventListener("change", function () {
-    const selectedTheme = this.value;
-
-    if (selectedTheme === "Retro") {
-      bodyElement.style.fontFamily = '"Pixelify Sans", sans-serif';
-
-      bodyElement.classList.add("theme-retro");
-    } else {
-      bodyElement.style.fontFamily = "";
-
-      bodyElement.classList.remove("theme-retro");
-    }
-  });</script>
-
