@@ -40,10 +40,13 @@
             [ VISUEL : Illustration Style Cartoon de la Résistance ]
           </div>
         </div>
-        <select class="mt-3" id="theme-select">
-          <option value="Normal">Normal</option>
-          <option value="Retro">Retro</option>
-        </select>
+        <div>
+          <p class="mb-0 mt-2">Style :</p>
+          <select class="mt-1" id="theme-select" autocomplete="off">
+            <option value="Normal">Normal</option>
+            <option value="Retro">Retro</option>
+          </select>
+        </div>
       </header>
 
       <section class="container py-5">
@@ -97,7 +100,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-hand-holding-heart" style="color: var(--nird-blue)"></i>
+                  <i class="icon-box fas fa-hand-holding-heart" style="color: var(--tertiary)"></i>
                   <h4 class="card-title">Inclusion</h4>
                   <p class="card-text">
                     Garantir un accès équitable et une autonomie pour tous les utilisateurs.
@@ -109,7 +112,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-balance-scale" style="color: var(--nird-blue)"></i>
+                  <i class="icon-box fas fa-balance-scale" style="color: var(--tertiary)"></i>
                   <h4 class="card-title">Responsabilité</h4>
                   <p class="card-text">
                     Faire des choix éthiques, transparents et respectueux des libertés numériques.
@@ -121,7 +124,7 @@
             <div class="col-lg-4 col-md-6 mb-4">
               <div class="card h-100 card-pillar p-4 bg-white">
                 <div class="card-body">
-                  <i class="icon-box fas fa-leaf" style="color: var(--nird-blue)"></i>
+                  <i class="icon-box fas fa-leaf" style="color: var(--tertiary)"></i>
                   <h4 class="card-title">Durabilité</h4>
                   <p class="card-text">Sobriété, réemploi et utilisation d'outils qui durent.</p>
                 </div>
@@ -143,16 +146,16 @@
               <h4 class="mb-3">Nos Armes :</h4>
               <ul class="list-unstyled fw-bold text-start mx-auto" style="max-width: 350px">
                 <li>
-                  <i class="fab fa-linux me-2" style="color: var(--nird-green)"></i>Logiciels Libre
-                  (Linux)
+                  <i class="fab fa-linux me-2" style="color: var(--primary)"></i>Logiciels Libre
+                  (Linux, LibreOffice,...)
                 </li>
                 <li>
-                  <i class="fas fa-tools me-2" style="color: var(--nird-green)"></i>Matériel
+                  <i class="fas fa-tools me-2" style="color: var(--primary)"></i>Matériel
                   Reconditionné
                 </li>
                 <li>
-                  <i class="fas fa-users me-2" style="color: var(--nird-green)"></i>Mutualisation
-                  et Co-construction
+                  <i class="fas fa-users me-2" style="color: var(--primary)"></i>Mutualisation et
+                  Co-construction
                 </li>
               </ul>
             </div>
@@ -176,32 +179,25 @@
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     </div>
-    
+
     <div id="scanlines"></div>
   </body>
 </html>
-<script>
-// 1. Ciblez l'élément SELECT par son ID (si vous en avez un)
-const themeSelector = document.getElementById("theme-select");
+<script>  const themeSelector = document.getElementById("theme-select");
 
-// 2. Ciblez l'élément qui va recevoir la classe (le body est un bon choix)
-const bodyElement = document.body;
+  const bodyElement = document.body;
 
-themeSelector.addEventListener("change", function () {
+  themeSelector.addEventListener("change", function () {
     const selectedTheme = this.value;
 
     if (selectedTheme === "Retro") {
-        // Applique la police Rétro
-        bodyElement.style.fontFamily = '"Pixelify Sans", sans-serif'; 
-        
-        // **Ajoute la classe pour les lignes de balayage et les autres styles Rétro**
-        bodyElement.classList.add("theme-retro"); 
+      bodyElement.style.fontFamily = '"Pixelify Sans", sans-serif';
+
+      bodyElement.classList.add("theme-retro");
     } else {
-        // Retire la police
-        bodyElement.style.fontFamily = "";
-        
-        // **Retire la classe pour désactiver les lignes de balayage**
-        bodyElement.classList.remove("theme-retro");
+      bodyElement.style.fontFamily = "";
+
+      bodyElement.classList.remove("theme-retro");
     }
-});
-</script>
+  });</script>
+

@@ -1,19 +1,21 @@
 /* Styles personnalisés pour améliorer l'ambiance */
 :root {
-  --nird-green: #38761d; /* Vert de la durabilité */
-  --nird-yellow: #f1c232; /* Jaune de la résistance */
-  --nird-blue: #1c4587; /* Bleu de l'inclusion */
+  --primary: #33797C; /* Vert de la durabilité */
+  --secondary: #3e9c97; /* Jaune de la résistance */
+  --tertiary: #a7c9b5; /* Bleu de l'inclusion */
+}
+:root:has(option[value="Retro"]:checked){
+    --primary: #27b5fe;
+    --secondary: #59cc00;
+    --tertiary: #9658b6;
 }
 
-body:has(option[value="Retro"]:checked) .btn{
+body:has(option[value="Retro"]:checked) .btn :root{
     cursor: crosshair;
     border-radius: 0%;
 }
 
 /* EFFET CRT */
-/*
- * 1. Styles de base du conteneur (sans les lignes de balayage)
- */
 #scanline-container {
     /* Styles généraux comme dans l'exemple précédent, sans l'effet des lignes */
     position: relative; 
@@ -28,25 +30,17 @@ body:has(option[value="Retro"]:checked) .btn{
     overflow: hidden;
 }
 
-/* * 2. Définition de la classe "theme-retro"
- * C'est cette classe qui est ajoutée par le JavaScript.
- */
-
-
-/* * 3. Création du calque de lignes de balayage EN UTILISANT un pseudo-élément
- * L'effet ne s'applique que si la classe `theme-retro` est présente sur le <body>
- */
 .theme-retro::before {
     content: ''; /* Obligatoire pour les pseudo-éléments */
-    position: fixed; /* Utiliser fixed pour couvrir tout l'écran, pas seulement le conteneur */
+    position: fixed; /* On couvre tout l'écran*/
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none; /* Permet aux clics de passer à travers */
-    z-index: 1000; /* Assure que l'effet est au-dessus de tout */
+    z-index: 1000; /* Force les lignes a l'avant */
     
-    /* La Magie de l'effet Scanlines */
+    /* effet Scanlines */
     background: repeating-linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0) 0px,
@@ -56,28 +50,28 @@ body:has(option[value="Retro"]:checked) .btn{
     background-size: 100% 4px;
     opacity: 0.5;
     
-    /* Animation optionnelle (si vous voulez un scintillement uniquement en CSS) */
+    /* Animation optionnelle*/
     animation: flicker 0.1s infinite alternate;
 }
 
-/* Définition de l'animation de scintillement purement CSS (alternative au JS) */
+/* Définition de l'animation de scintillement purement CSS */
 @keyframes flicker {
     from { opacity: 0.45; }
     to { opacity: 0.55; }
 }
 .hero-section {
-  background-color: var(--nird-green);
+  background-color: var(--primary);
   color: white;
   padding: 80px 0;
   text-align: center;
 }
 .icon-box {
   font-size: 2.5rem;
-  color: var(--nird-yellow);
+  color: var(--secondary);
   margin-bottom: 15px;
 }
 .card-pillar {
-  border: 2px solid var(--nird-blue);
+  border: 2px solid var(--tertiary);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s;
 }
